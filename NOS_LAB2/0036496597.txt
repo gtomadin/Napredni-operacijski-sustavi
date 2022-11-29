@@ -1,0 +1,68 @@
+GREGORY TOMADIN
+0036496597
+
+#1.2
+*SPEC* a)
+CTLSPEC EF (proc0.state = critical & proc1.state = critical)
+*SPEC* b)
+CTLSPEC !(EF (proc0.state = critical & proc1.state = critical))
+
+#1.3
+*DANE*
+DA
+
+
+#1.4
+*SPEC*proc0
+CTLSPEC AG (proc0.state = entering -> AF (proc0.state = critical))
+*SPEC*proc1
+CTLSPEC AG (proc1.state = entering -> AF (proc1.state = critical))
+
+#1.5
+*DANE*
+NE
+
+#1.6
+*SPEC*
+JUSTICE running
+
+#1.7
+*DANE*
+NE
+
+#1.8
+*SPEC*
+JUSTICE !(state = critical)
+*DANE*
+NE
+
+#1.9
+*SPEC*
+JUSTICE !(state = noncritical)
+*DANE*
+DA
+
+#1.10
+*SPEC*
+CTLSPEC AG(proc0.state = exiting -> A[proc1.state = exiting U !(proc0.state = critical)])
+
+#1.11
+*DANE*
+DA
+
+
+#4.5
+*SKUP*sva
+1. request = TRUE, status = busy, negReq = TRUE
+2. request = TRUE, status = busy, negReq = FALSE 
+3. request = TRUE, status = ready, negReq = TRUE 
+4. request = TRUE, status = ready, negReq = FALSE 
+5. request = FALSE, status = busy, negReq = TRUE 
+6. request = FALSE, status = busy, negReq = FALSE 
+7. request = FALSE, status = ready, negReq = TRUE 
+8. request = FALSE, status = ready, negReq = FALSE
+*SKUP*dohvatljivo
+1. request = TRUE, status = busy, negReq = FALSE
+2. request = FALSE, status = busy, negReq = FALSE 
+3. request = FALSE, status = ready, negReq = TRUE 
+4. request = TRUE, status = ready, negReq = TRUE
